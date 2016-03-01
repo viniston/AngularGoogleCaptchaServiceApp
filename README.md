@@ -22,4 +22,4 @@ In case if you want to generate for your site please refer [reCAPTCHA Docs](http
 
 Sample screen of this demo:
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Application Screen](https://github.com/viniston/AngularGoogleCaptchaServiceApp/blob/master/img/App%20Screen%201.png)
