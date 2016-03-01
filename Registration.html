@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="BrandSystems" />
+    <!-- Include the page css -->
+    <link href="bower_components/assets/css/mui.css" rel="stylesheet" />
+    <link href="bower_components/assets/css/mui-responsive.css" rel="stylesheet" />
+    <link href="bower_components/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Include the css boostrap datepicker -->
+    <link href="bower_components/assets/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <!-- Include the css fancy select2 and tooltip -->
+    <link href="bower_components/assets/css/select2.css" rel="stylesheet" />
+    <link href="bower_components/assets/css/qtip2.css" rel="stylesheet" />
+    <!-- Include the css boostrap notify -->
+    <link href="bower_components/assets/css/bootstrap-notify.css" rel="stylesheet" />
+
+
+</head>
+<body class="UR" ng-app="captchaApp" ng-controller="mainCtrl">
+    <div class='notifications top-right'></div>
+    <div class="windRegistration">
+        <div class="contentBlock">
+            <div title="" class="header bsiLogo">
+                <img id="loginpageTitle" onclick="window.location = 'Registration.html'; return false;" src="img/hero-recaptcha-demo.gif" alt="Logo" />
+            </div>
+            <div id="Reg" class="box box-noborder">
+                <div class="box-header">
+                    <h3>Register New User</h3>
+                    <p>Please register as a user, using the form below in order to access the System.</p>
+                    <div class="information">
+                        <span>
+                            <i class="icon-asterisk"></i>
+                            <span>Mandatory Fields</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="box-content" id="maincontainer">
+                    <div class="box-content-margin">
+                        <form id="RegMetadata" class="form-float">
+                            <div class="span12">
+                                <h4 class="blockTitle">Basic Information</h4>
+                                <div id="staticControls">
+
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="variance">User Name</label>
+                                        <div class="controls">
+                                            <input type="text" ng-model="userModel.firstName" placeholder="First Name" class="speedTrack" autocomplete="off" id="userName" />
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="variance">LastName</label>
+                                        <div class="controls">
+                                            <input type="text" ng-model="userModel.lastName" class="speedTrack" placeholder="Last Name" autocomplete="off" id="lastName" />
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="Password">Date of birth (dd-mm-yyyy)</label>
+                                        <div class="controls">
+                                            <input type="text" ng-model="userModel.dob" id="dateofbirth" class="btsrpdate" placeholder="Date of birth" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="FirstName">Country <i title=" Country , State and Cities are inter related. As per you selection options will be populated automatically" class="icon-info-sign infoIcon" id="passwordPolicy"></i></label>
+                                        <div class="controls">
+                                            <select ng-model="userModel.country" ng-change="populateOptions('country')" class="longbox" ui-select2 id="select2-country">
+                                                <option value="">Select Country</option>
+                                                <option ng-repeat="item in geoCountries" value="{{item.id}}">{{item.Caption}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="FirstName">State </label>
+                                        <div class="controls">
+                                            <select ng-change="populateOptions('state')" class="longbox" ng-model="userModel.state" ui-select2 id="select2-state">
+                                                <option value="">Select State</option>
+                                                <option ng-repeat="item in formSrc.State" value="{{item.id}}">{{item.Caption}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="FirstName">City </label>
+                                        <div class="controls">
+                                            <select class="longbox" ng-model="userModel.city" ui-select2 id="select2-city">
+                                                <option value="">Select City</option>
+                                                <option ng-repeat="item in formSrc.City" value="{{item.id}}">{{item.Caption}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="Email">Email <i title="Enter your valid email address." class="icon-info-sign infoIcon" id="I2"></i></label>
+                                        <div class="controls">
+                                            <input type="email" ng-model="userModel.email" autocomplete="off" id="email" placeholder="Email" />
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="variance">Captcha <i title="Verify this if you are a human" class="icon-info-sign infoIcon" id="I3"></i></label>
+                                        <div
+                                            vc-recaptcha
+                                            theme="'light'"
+                                            key="model.key"
+                                            on-create="setWidgetId(widgetId)"
+                                            on-success="setResponse(response)"
+                                            on-expire="cbExpiration()">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="saving" id="showhideprogress" style="display: none">
+                        <div class="InProgress">
+                            <img src="bower_components/assets/img/loading.gif" />
+                            <span>Saving...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="pull-right buttongroup">
+                        <input id="Back" class="btn btn-small" onclick="window.location = 'Registration.html'; return false;" value="Cancel" />
+                        <input id="registerbtn" class="btn btn-medium btn-primary" ng-click="submitUser($event)" value="Save" />
+                        <input style="display: none" type="submit" id="btnTemp" invisible />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the JS jquery and libraries -->
+    <script src="bower_components/assets/js/Jquery/jquery-2.0.3.min.js"></script>
+    <script src="bower_components/assets/js/Nod/nod.js"></script>
+    <script src="bower_components/assets/js/Bootstrap/DatePicker/bootstrap-datepicker.js"></script>
+    <script src="bower_components/assets/js/bootstrap/plugin.js"></script>
+    <script src="bower_components/assets/js/UtilityFramework/bootbox.js"></script>
+    <script src="bower_components/assets/js/Bootstrap/bootstrap-notify.js"></script>
+    <script src="bower_components/assets/js/UtilityFramework/jquery.qtip.js"></script>
+    <script src="bower_components/assets/js/Select2/select2.js"></script>
+
+
+    <!-- Include AngularJS -->
+    <script src="bower_components/assets/js/libs/angular.js"></script>
+    <script src="bower_components/assets/js/UtilityFramework/select2.js"></script>
+
+    <!-- Include the JS ReCaptcha API -->
+    <script src="//www.google.com/recaptcha/api.js?render=explicit&onload=vcRecaptchaApiLoaded" async defer></script>
+    <script src="bower_components/assets/js/libs/angular-recaptcha.js"></script>
+
+    <!-- Include the JS app controller and angular seed -->
+    <script src="bower_components/app/app.js"></script>
+
+</body>
+</html>
