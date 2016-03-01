@@ -18,6 +18,6 @@ I have placed my site key as an html attribute.
 ```
 
 Please note that i am using my own site key without any encryption.
-In case if you want to generate for your site please refer [reCAPTCHA Docs](https://developers.google.com/recaptcha/docs/secure_token).
+In case if you want to generate for your site please refer [reCAPTCHA Docs](https://www.google.com/recaptcha/intro/index.html).
 
 
