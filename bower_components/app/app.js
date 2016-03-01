@@ -48,17 +48,11 @@ app.controller('mainCtrl', function ($scope, vcRecaptchaService) {
     };
 
     $scope.setWidgetId = function (widgetId) {
-
-        console.info('Created widget ID: %s', widgetId);
-
         $scope.widgetId = widgetId;
     };
 
     $scope.cbExpiration = function () {
-        console.info('Captcha expired. Resetting response object');
-
         vcRecaptchaService.reload($scope.widgetId);
-
         $scope.response = null;
     };
 
