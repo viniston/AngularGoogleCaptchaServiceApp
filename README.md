@@ -12,9 +12,10 @@ I have placed my site key as an html attribute.
 
 ```html
 <div
-    vc-recaptcha
-    key="'---- YOUR PUBLIC KEY GOES HERE ----'"
-></div>
+   
+    key="'---- VINISTON'S PUBLIC KEY GOES HERE ----'"
+>
+</div>
 ```
 
 Please note that i am using my own site key without any encryption.
